@@ -2,6 +2,8 @@ import React from "react";
 import { data, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ReactMarkdown from 'react-markdown';
+import '../markdown-styles.css'
 const PostPage = () => {
   const { id } = useParams(); //const params = useParams(); const id = params.id;
   const [loading, setLoading] = useState(true);
@@ -50,9 +52,9 @@ const PostPage = () => {
             <span>Published on {new Date(post.createdAt).toLocaleDateString()}</span>
         </div>
         <div className="post-full-content">
-            <pre style={{ whiteSpace: 'pre-wrap', backgroundColor: '#f4f4f4', padding: '1rem', borderRadius: '5px' }}>
-                {post.markdownContent}
-            </pre>
+            <ReactMarkdown>
+              {post.markdownContent}
+            </ReactMarkdown>
         </div>
     </article>
   );
