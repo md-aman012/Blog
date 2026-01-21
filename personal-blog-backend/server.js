@@ -1,31 +1,25 @@
-// server.js
-
-// 1. Load environment variables
 require('dotenv').config();
 
-// 2. Import Libraries
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Assuming you'll add/have cors
 
-// NEW: Import your route files
-const postRoutes = require('./routes/postRoutes');
 
-// 3. Create an instance of an Express application
+const postRoutes = require('./routes/postRoutes');
+const authRoutes = require('./routes/authRoutes');
+
+
 const app = express();
 
-// --- MIDDLEWARE ---
-// We will also add cors here for future-proofing our API for the React frontend
 app.use(cors());
 app.use(express.json());
 
 // 4. Define the port
 const PORT = process.env.PORT || 5000;
 
-// NEW: Mount the routes
-// This tells Express that for any request that starts with '/api/posts',
-// it should be handled by the 'postRoutes' router.
 app.use('/api/posts', postRoutes);
+// Auth routes: POST /api/auth/login
+app.use('/api/auth', authRoutes);
 
 // 5. Create a function to connect to DB and start the server
 const startServer = async () => {
