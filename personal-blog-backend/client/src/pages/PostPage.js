@@ -56,6 +56,7 @@ const PostPage = () => {
               {post.markdownContent}
             </ReactMarkdown>
         </div>
+        
     </article>
   );
 };

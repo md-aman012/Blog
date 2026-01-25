@@ -6,6 +6,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 import PostPage from "./pages/PostPage";
 import Navbar from "./components/Navbar";
 import './index.css';
+import ProtectedRoute from "./components/ProtectedRoute";
+import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost"
 function App() {
   return (
    <BrowserRouter>
@@ -15,8 +18,22 @@ function App() {
          <Routes>
           <Route path="/" element={<Homepage/>}/>
           <Route path="/post/:id" element={<PostPage/>} />
-          <Route path="/admin/login" element={<AdminDashboard/>} />
-          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/admin/dashboard" 
+             element={<ProtectedRoute>
+              <AdminDashboard/>
+             </ProtectedRoute>}
+           />
+          <Route path="/admin/login" element={<LoginPage/>} />
+          <Route path="/admin/create-post"
+            element={<ProtectedRoute>
+              <CreatePost />
+            </ProtectedRoute>}
+          />
+          <Route path="/admin/edit-post/:id"
+            element={<ProtectedRoute>
+              <EditPost />
+            </ProtectedRoute>}
+          />
           
         </Routes>
        </main>

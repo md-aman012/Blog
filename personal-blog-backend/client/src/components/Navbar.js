@@ -13,11 +13,9 @@
                     <Link to="/admin/login">Admin Login</Link>
                 </li>
                 <li>
-                    <Link to="/login">Login Page</Link>
+                    <Link to="/admin/dashboard">Dashboard</Link>
                 </li>
-                <li>
-                    <Link to="/post/:id">PostPage</Link>
-                </li>
+                
 
             </ul>
         </nav>
