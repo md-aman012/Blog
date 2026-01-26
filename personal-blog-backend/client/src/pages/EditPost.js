@@ -7,6 +7,7 @@ import apiService from "../services/apiService";
 const EditPost = () => {
     const {id} = useParams();
 
+    console.log(id)
     const[title, setTitle] = useState('');
     const[markdownContent, setMarkdownContent] = useState('');
     const[error, setError] = useState('');
@@ -18,13 +19,17 @@ const EditPost = () => {
         const fetchpost = async () =>{
             setLoading(true);
             try {
-                const response = await apiService.get(`/posts/${id}`);
+              const response = await apiService.get(`/posts/id/${id}`);
+                console.log(response.data.title);
+                
                 setTitle(response.data.title);
                 setMarkdownContent(response.data.markdownContent);
 
             } catch (error) {
-                console.log('failed to fetch post editing',error);
-                setError('failed to load post data please try again');
+                // console.log('failed to fetch post editing',error);
+                // setError('failed to load post data please try again');
+                console.log('failed to fetch post editing', error?.response || error);
+                setError(error?.response?.data?.message || 'failed to load post data please try again');
             }finally{
                 setLoading(false);
             }

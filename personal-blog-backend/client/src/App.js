@@ -17,7 +17,7 @@ function App() {
        <main style={{ padding: '1rem' }}>
          <Routes>
           <Route path="/" element={<Homepage/>}/>
-          <Route path="/post/:id" element={<PostPage/>} />
+          <Route path="/post/:slug" element={<PostPage/>} />
           <Route path="/admin/dashboard" 
              element={<ProtectedRoute>
               <AdminDashboard/>

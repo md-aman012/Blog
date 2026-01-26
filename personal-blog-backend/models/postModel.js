@@ -1,3 +1,4 @@
+const slugify = require('slugify')
 const mongoose  = require('mongoose');
 const postSchema = new mongoose.Schema({
     title:{
@@ -18,6 +19,10 @@ const postSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    slug: {
+        type: String,
+        unique: true,
+    }
     // category: {
     //     type: String,
     //     required: [true,"Please Provide blog category"],
@@ -25,6 +30,13 @@ const postSchema = new mongoose.Schema({
     // }
 
 });
+
+postSchema.pre('save', async function() {
+   if(this.isModified('title')){
+    this.slug = slugify(this.title,{lower: true,strict: true})
+   }
+   next();
+})
 
 // Create and export the Mongoose Model.
 // The mongoose.model() function compiles the schema into a usable model.

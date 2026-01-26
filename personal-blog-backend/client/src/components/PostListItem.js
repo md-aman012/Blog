@@ -5,7 +5,7 @@ const PostListItem = ({post}) => {
         snippet.replace(/[#*`]/g, '') // A simple regex to remove common markdown characters
         snippet.substring(0, 150)
     return(
-        <Link to={`/post/${post._id}`} className="post-link">
+        <Link to={`/post/${post.slug}`} className="post-link">
         <article className="post-list-item">
             <h2>{post.title}</h2>
             <div className="post-meta">

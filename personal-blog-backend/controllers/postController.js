@@ -1,4 +1,5 @@
-const Post = require('../models/postModel');    
+const Post = require('../models/postModel');   
+const slugify = require('slugify');
 
 const createPost = async(req, res) => {
     try {
@@ -6,10 +7,12 @@ const createPost = async(req, res) => {
         if(!title || !markdownContent){
             return res.status(400).json({message: 'Please Provide a title and content for post'})   
         }
+        const slug = slugify(title, { lower: true, strict: true });
         const newPost =  await Post.create({
                 title,
                 markdownContent,
                 author,
+                slug,
             })
         res.status(201).json(newPost);
     } catch (error) {
@@ -29,6 +32,22 @@ const getAllPost =  async(req,res) => {
 const getPostById = async(req,res) => {
     try {
         const post = await Post.findById(req.params.id);
+        if(post){
+            return res.status(200).json(post)
+        }else{
+            return res.status(404).json({message: 'Post not found'})
+        }
+    } catch (error) {
+        console.log(error);
+        if(error.name ==='CastError'){
+            return res.status(400).json({message : `invalid post id format ${req.params.id}`})
+        }
+        return res.status(500).json({message : 'Error fetching post', error: error.message})
+    }
+}
+const getPostBySlug = async(req,res) => {
+    try {
+        const post = await Post.findOne({slug: req.params.slug});
         if(post){
             return res.status(200).json(post)
         }
@@ -95,6 +114,7 @@ module.exports ={
     createPost,
     getAllPost,
     getPostById,
+    getPostBySlug,
     updatePost,
     deletePost
 

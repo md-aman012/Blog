@@ -4,19 +4,25 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from 'react-markdown';
 import '../markdown-styles.css'
+import apiService from "../services/apiService";
 const PostPage = () => {
-  const { id } = useParams(); //const params = useParams(); const id = params.id;
+  const { slug,id} = useParams(); //const params = useParams(); const id = params.id;
+  console.log(slug);
+  // console.log(id, "this is id");
+  
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    const url = `http://localhost:5000/api/posts/${id}`;
+    const url = `http://localhost:5000/api/posts/${slug}`;
     const fetchpost = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await axios.get(url);
+        // const response = await apiService.get(`/posts/${slug}`)
         setPost(response.data);
       } catch (error) {
         console.log("Error on postpage", error);
@@ -30,7 +36,7 @@ const PostPage = () => {
       }
     };
     fetchpost();
-  }, [id]);
+  }, [slug]);
 
   
   if (loading) {
