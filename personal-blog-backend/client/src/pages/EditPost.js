@@ -32,7 +32,7 @@ const EditPost = () => {
                 setError(error?.response?.data?.message || 'failed to load post data please try again');
             }finally{
                 setLoading(false);
-          
+            }
         };
         fetchpost();
     },[id]);
