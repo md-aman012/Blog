@@ -14,7 +14,8 @@ const createPost = async(req, res) => {
                 author: req.user.id,
                 slug,
             })
-        res.status(201).json(newPost);
+            const populatedPost = await newPost.populate('author', 'username');
+        res.status(201).json(populatedPost);
     } catch (error) {
         console.log(error)
         res.status(400).json({message: 'Error creating post', error})
@@ -22,7 +23,9 @@ const createPost = async(req, res) => {
 }
 const getAllPost =  async(req,res) => {
     try {
-        const posts = await Post.find({}).sort({createdAt: -1});
+        const posts = await Post.find()
+        .sort({createdAt: -1})
+        .populate('author','username');
         return res.status(200).json(posts)
     } catch (error) {
         console.log(error)
@@ -31,7 +34,7 @@ const getAllPost =  async(req,res) => {
 }
 const getPostById = async(req,res) => {
     try {
-        const post = await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id).populate('author','username');
         if(post){
             return res.status(200).json(post)
         }else{
@@ -47,7 +50,7 @@ const getPostById = async(req,res) => {
 }
 const getPostBySlug = async(req,res) => {
     try {
-        const post = await Post.findOne({slug: req.params.slug});
+        const post = await Post.findOne({slug: req.params.slug}).populate('author','username');
         if(post){
             return res.status(200).json(post)
         }
@@ -116,7 +119,7 @@ const deletePost = async(req, res) => {
 
 const getAdminPost = async(req, res) => {
     try {
-        const posts = await Post.find({author: req.user.id}).sort({createdAt: -1});
+        const posts = await Post.find({author: req.user.id}).sort({createdAt: -1}).populate('author','username');;
         return res.status(200).json(posts)
     } catch (error) {
         console.log(error)

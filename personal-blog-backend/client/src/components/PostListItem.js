@@ -9,7 +9,7 @@ const PostListItem = ({post}) => {
         <article className="post-list-item">
             <h2>{post.title}</h2>
             <div className="post-meta">
-                <span>by {post.author}</span>
+                <span>by:{post.author?.username || 'Anonymous'}</span>
                 <span>{new Date(post.createdAt).toLocaleDateString()}</span>
             </div>
             <p>{snippet}</p>

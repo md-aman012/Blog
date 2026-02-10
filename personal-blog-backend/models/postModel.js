@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'A blog post must have author'],
-        
+        ref: "User"
     },
     createdAt: {
         type: Date,
@@ -36,6 +36,8 @@ postSchema.pre('save', async function() {
     this.slug = slugify(this.title, { lower: true, strict: true });
    }
 })
+
+
 
 // Create and export the Mongoose Model.
 // The mongoose.model() function compiles the schema into a usable model.

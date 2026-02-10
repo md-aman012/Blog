@@ -8,6 +8,7 @@ const CreatePost = () => {
     const [markdownContent, setMarkdownContent] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [author,setAuthor] = useState()
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {

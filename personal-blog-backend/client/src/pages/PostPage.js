@@ -54,7 +54,7 @@ const PostPage = () => {
     <article className="post-full">
         <h1>{post.title}</h1>
         <div className="post-full-meta">
-            <span>by {post.author}</span>
+            <span>by By: {post.author?.username || 'Anonymous'}</span>
             <span>Published on {new Date(post.createdAt).toLocaleDateString()}</span>
         </div>
         <div className="post-full-content">

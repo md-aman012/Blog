@@ -76,7 +76,8 @@ const AdminDashboard = () => {
               // The 'key' prop is essential for React's rendering performance.
               <tr key={post._id}>
                 <td>{post.title}</td>
-                <td>{post.author}</td>
+                <td>{post.author?.username|| "Anonymous"  }</td>
+                
                 {/* Format the date for better readability */}
                 <td>{new Date(post.createdAt).toLocaleDateString()}</td>
                  <td className="action-buttons">
