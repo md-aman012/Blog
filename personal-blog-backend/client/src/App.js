@@ -9,6 +9,7 @@ import './index.css';
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost"
+import SignupPage from "./pages/Signup";
 function App() {
   return (
    <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
              </ProtectedRoute>}
            />
           <Route path="/admin/login" element={<LoginPage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
           <Route path="/admin/create-post"
             element={<ProtectedRoute>
               <CreatePost />

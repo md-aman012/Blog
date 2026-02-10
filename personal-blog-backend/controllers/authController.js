@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -53,3 +53,24 @@ exports.login = async (req, res) => {
     })
   }
 };
+
+const signup = async (req,res) => {
+  const {username,password,email} = req.body;
+  try{
+    let user = await User.findOne({username});
+    if(user) return res.status(400).json({message : 'User Already exist'});
+
+    user = new User({username,password,email});
+    await user.save();
+
+    const token = jwt.sign({id: user._id},process.env.JWT_SECRET,{
+      expiresIn: '1h'
+    });
+    res.status(201).json({token})
+
+  }catch(error){
+      res.status(500).json({message : 'Server error'});
+  }
+}
+
+module.exports = {login,signup};

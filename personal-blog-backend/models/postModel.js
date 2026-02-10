@@ -11,9 +11,9 @@ const postSchema = new mongoose.Schema({
         required:[true, 'A post must have content']
     },
     author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: [true, 'A blog post must have author'],
-        default: 'Admin'
+        
     },
     createdAt: {
         type: Date,
@@ -32,10 +32,9 @@ const postSchema = new mongoose.Schema({
 });
 
 postSchema.pre('save', async function() {
-   if(this.isModified('title')){
-    this.slug = slugify(this.title,{lower: true,strict: true})
+   if (this.isModified('title')) {
+    this.slug = slugify(this.title, { lower: true, strict: true });
    }
-   next();
 })
 
 // Create and export the Mongoose Model.

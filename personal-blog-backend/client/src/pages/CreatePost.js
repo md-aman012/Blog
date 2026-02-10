@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import apiService from "../services/apiService";
 import './CreatePost.css'
 
@@ -24,8 +24,7 @@ const CreatePost = () => {
         try {
             await apiService.post('/posts',{
                 title,
-                markdownContent,
-                author: 'admin'
+                markdownContent
             });
             navigate('/admin/dashboard');
         } catch (error) {

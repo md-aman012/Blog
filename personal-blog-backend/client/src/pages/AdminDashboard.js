@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchpost = async () =>{
             try {
-                const response = await apiService.get('/posts');
+                const response = await apiService.get('/posts/admin/my-posts');
                 setPost(response.data);
             } catch (error) {
                 console.log("Failed to fetch post:", error);
