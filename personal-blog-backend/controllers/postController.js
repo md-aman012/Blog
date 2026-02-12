@@ -99,16 +99,15 @@ const updatePost = async(req,res) => {
 
 const deletePost = async(req, res) => {
     try {
-        const post = await Post.findById(req.params.id)
-        if(post.author.toString != req.user.id){
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({message: 'Post not found'});
+        }
+        if (post.author.toString() !== req.user.id && req.user.role !== 'admin') {
             return res.status(403).json({ message: 'Not authorized to delete this post' });
-        }else{
-            res.status(404).json({message: 'Post not found'})
         }
         await post.deleteOne();
-        if(post){
-            res.status(200).json({message :'Post deleted succesfully'})
-        }
+        return res.status(200).json({message :'Post deleted succesfully'});
     } catch (error) {
         if(error.name ==="CastError"){
             return res.status(400).json({message:`invalid post id format ${req.params.id}`})
@@ -119,7 +118,10 @@ const deletePost = async(req, res) => {
 
 const getAdminPost = async(req, res) => {
     try {
-        const posts = await Post.find({author: req.user.id}).sort({createdAt: -1}).populate('author','username');;
+        const query = req.user.role === 'admin' ? {} : { author: req.user.id };
+        const posts = await Post.find(query)
+            .sort({createdAt: -1})
+            .populate('author','username');
         return res.status(200).json(posts)
     } catch (error) {
         console.log(error)

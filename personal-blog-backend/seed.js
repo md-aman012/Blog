@@ -35,6 +35,7 @@ const seedAdmin = async () => {
     const adminUser = new User({
       username: ADMIN_USERNAME,
       password: ADMIN_PASSWORD, // We provide the plain-text password here.
+      role: 'admin',
     });
 
     await adminUser.save();
