@@ -70,18 +70,36 @@ const getPostBySlug = async(req,res) => {
 
 const updatePost = async(req,res) => {
     try {
-        const post = await Post.findByIdAndUpdate(
-            req.params.id,
-             req.body,
-             {
-                new: true, // Option to return the document *after* the update has been applied
-                runValidators: true // Option to enforce schema validation rules on the update
-             });
-        if(post){
-            res.status(200).json(updatePost, {message: "Post created"});
-        }else{
-            res.status(404).json({message: 'Post Not found'})
+        // const post = await Post.findByIdAndUpdate(
+        //     req.params.id,
+        //      req.body,
+        //      {
+        //         new: true, // Option to return the document *after* the update has been applied
+        //         runValidators: true // Option to enforce schema validation rules on the update
+        //      });
+        // if(post){
+        //     res.status(200).json(updatePost, {message: "Post created"});
+        // }else{
+        //     res.status(404).json({message: 'Post Not found'})
+        // }
+        const post = await Post.findById(req.params.id);
+        if(!post) {
+            return res.status(404).json({message: 'Post not found'});
         }
+        const isAdmin = (req.user.role || '').toLowerCase() === 'admin';
+        if (post.author.toString() !== req.user.id && !isAdmin) {
+            return res.status(403).json({ message: 'Not authorized to Update this post' });
+        }
+        const updatedPost = await Post.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        ).populate('author', 'username');
+
+        return res.status(200).json({
+            message: 'Post updated successfully',
+            post: updatedPost,
+        });
         
     } catch (error) {
         console.log(error);
@@ -103,7 +121,8 @@ const deletePost = async(req, res) => {
         if (!post) {
             return res.status(404).json({message: 'Post not found'});
         }
-        if (post.author.toString() !== req.user.id && req.user.role !== 'admin') {
+        const isAdmin = (req.user.role || '').toLowerCase() === 'admin';
+        if (post.author.toString() !== req.user.id && !isAdmin) {
             return res.status(403).json({ message: 'Not authorized to delete this post' });
         }
         await post.deleteOne();

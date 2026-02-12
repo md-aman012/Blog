@@ -22,20 +22,21 @@ const seedAdmin = async () => {
     // 6. CHECK IF THE ADMIN USER ALREADY EXISTS
     // This makes our script "idempotent" - meaning you can run it multiple times
     // without creating duplicate users.
-    const existingAdmin = await User.findOne({ username: ADMIN_USERNAME });
+    // const existingAdmin = await User.findOne({ username: ADMIN_USERNAME });
 
-    if (existingAdmin) {
-      console.log('Admin user already exists. NO Action taken');
-      return;
-    }
+    // if (existingAdmin) {
+    //   console.log('Admin user already exists. NO Action taken');
+    //   return;
+    // }
 
     // 7. CREATE AND SAVE THE NEW ADMIN USER
     // If the admin user doesn't exist, we create a new one.
-    console.log('Admin user not found. Creating a new one...');
+    // console.log('Admin user not found. Creating a new one...');
     const adminUser = new User({
       username: ADMIN_USERNAME,
       password: ADMIN_PASSWORD, // We provide the plain-text password here.
       role: 'admin',
+      email: 'staraman600@gmail.com',
     });
 
     await adminUser.save();
