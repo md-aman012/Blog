@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import axios from 'axios';
 import PostListItem from "../components/PostListItem";
+import apiService from "../services/apiService";
 const Homepage = () => {
     // post = array , loading = boolean, error = string
     const [posts, setPosts] = useState([])
@@ -12,7 +13,7 @@ const Homepage = () => {
             try {
                 //Use axios to send a GET request to our backend API endpoint.
                 // Make sure your backend server is running! The URL must match the port your server is on.
-                const response = await axios.get('http://localhost:5000/api/posts')
+                const response = await apiService.get("api/posts")
                 setPosts(response.data);
                 setError(null);
             } catch (error) {
