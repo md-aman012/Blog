@@ -51,7 +51,7 @@ const login = async (req, res) => {
         status: 'error',
         message: 'An internal serer error occured'
     })
-  }
+  } 
 };
 
 const signup = async (req,res) => {

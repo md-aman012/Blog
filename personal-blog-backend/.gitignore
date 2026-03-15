@@ -4,5 +4,7 @@
 /node_modules
 
 # Ignore environment variables file
-.envgit rm --cached .env
+.env
 /seed.js.
+
+/build
