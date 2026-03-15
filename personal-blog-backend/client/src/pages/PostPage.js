@@ -1,12 +1,11 @@
 import React from "react";
-import { data, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from 'react-markdown';
 import '../markdown-styles.css'
-import apiService from "../services/apiService";
 const PostPage = () => {
-  const { slug,id} = useParams(); //const params = useParams(); const id = params.id;
+  const { slug} = useParams(); //const params = useParams(); const id = params.id;
   console.log(slug);
   // console.log(id, "this is id");
   

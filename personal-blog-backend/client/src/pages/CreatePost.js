@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 import apiService from "../services/apiService";
 import './CreatePost.css'
 
@@ -8,7 +8,7 @@ const CreatePost = () => {
     const [markdownContent, setMarkdownContent] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [author,setAuthor] = useState()
+    // const [author,setAuthor] = useState()
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {

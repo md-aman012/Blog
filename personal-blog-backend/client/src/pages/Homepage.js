@@ -1,4 +1,3 @@
-import React from "react";
 import { useState,useEffect } from "react";
 import axios from 'axios';
 import PostListItem from "../components/PostListItem";
@@ -37,7 +36,7 @@ const Homepage = () => {
     return(
         <div>
             <h1>Blog Posts</h1>
-            {posts.length == 0 ?(
+            {posts.length === 0 ?(
                 <p>No post yet</p>
             ): (
                 <div>
