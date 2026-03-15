@@ -1,5 +1,4 @@
 import { useState,useEffect } from "react";
-import axios from 'axios';
 import PostListItem from "../components/PostListItem";
 import apiService from "../services/apiService";
 const Homepage = () => {
