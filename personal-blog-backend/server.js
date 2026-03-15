@@ -11,7 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
-const whitelist = [process.env.FRONTEND_URL];
+const whitelist = [process.env.FRONTEND_URL,"https://blog-z893.onrender.com","https://blog-ten-alpha-58.vercel.app/"];
 
 const corsOptions = {
   origin: (origin,callback) => {
