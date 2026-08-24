@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import apiService from '../services/apiService'
-import './AdminDashboard.css'
+import './AdminDashboard.css' 
 const AdminDashboard = () => {
     const [post,setPost] = useState([]);
     const [loading,setLoading] = useState(true);
@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchpost = async () =>{
             try {
-                const response = await apiService.get('/posts/admin/my-posts');
+                const response = await apiService.get('/api/posts/admin/my-posts');
                 setPost(response.data);
             } catch (error) {
                 console.log("Failed to fetch post:", error);
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
         return;
       }
       try {
-        await apiService.delete(`/posts/${postid}`)
+        await apiService.delete(`/api/posts/${postid}`)
         
         // We use the functional form of setPosts to ensure we're working with the latest state.
       // The .filter() method creates a NEW array containing only the posts whose _id does NOT match the deleted postId.

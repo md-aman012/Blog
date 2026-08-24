@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use('/api/posts', postRoutes);
 // Auth routes: POST /api/auth/login
-app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes); 
 
 // 5. Create a function to connect to DB and start the server
 const startServer = async () => {

@@ -19,7 +19,7 @@ const EditPost = () => {
         const fetchpost = async () =>{
             setLoading(true);
             try {
-              const response = await apiService.get(`/posts/id/${id}`);
+              const response = await apiService.get(`/api/posts/id/${id}`);
                 console.log(response.data.title);
                 
                 setTitle(response.data.title);
@@ -46,7 +46,7 @@ const EditPost = () => {
             return;
         }
         try {
-            await apiService.put(`/posts/${id}`,{
+            await apiService.put(`/api/posts/${id}`,{
                 title,
                 markdownContent,
             });

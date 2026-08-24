@@ -23,7 +23,7 @@ const CreatePost = () => {
         }
 
         try {
-            await apiService.post('/posts',{
+            await apiService.post('/api/posts',{
                 title,
                 markdownContent
             });
