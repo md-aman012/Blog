@@ -13,18 +13,18 @@ const app = express();
 
 const whitelist = [process.env.FRONTEND_URL,"https://blog-z893.onrender.com","https://blog-ten-alpha-58.vercel.app/"];
 
-const corsOptions = {
-  origin: (origin,callback) => {
-    if(whitelist.indexOf(origin) !== -1 || !origin){
-      callback(null,true)
-    }else{
-      callback(new Error('Not Allowed by cors'))
-    }
-  },
-  optionsSuccessStatus : 200
-}
+// const corsOptions = {
+//   origin: (origin,callback) => {
+//     if(whitelist.indexOf(origin) !== -1 || !origin){
+//       callback(null,true)
+//     }else{
+//       callback(new Error('Not Allowed by cors'))
+//     }
+//   },
+//   optionsSuccessStatus : 200
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 // 4. Define the port
