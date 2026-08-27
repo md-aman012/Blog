@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from 'react-markdown';
 import '../markdown-styles.css'
+import apiService from "../services/apiService";
 const PostPage = () => {
   const { slug} = useParams(); //const params = useParams(); const id = params.id;
   console.log(slug);
@@ -15,13 +16,12 @@ const PostPage = () => {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    const url = `http://localhost:5000/api/posts/${slug}`;
+    // const url = `http://localhost:5000/api/posts/${slug}`;
     const fetchpost = async () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get(url);
-        // const response = await apiService.get(`/posts/${slug}`)
+        const response = await apiService.get(`/api/posts/${slug}`);
         setPost(response.data);
       } catch (error) {
         console.log("Error on postpage", error);
