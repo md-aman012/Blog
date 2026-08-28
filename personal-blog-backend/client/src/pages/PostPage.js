@@ -1,7 +1,6 @@
 import React from "react";
 import {useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import ReactMarkdown from 'react-markdown';
 import '../markdown-styles.css'
 import apiService from "../services/apiService";
@@ -16,7 +15,6 @@ const PostPage = () => {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    // const url = `http://localhost:5000/api/posts/${slug}`;
     const fetchpost = async () => {
       setLoading(true);
       setError(null);
