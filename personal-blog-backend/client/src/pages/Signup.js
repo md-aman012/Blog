@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
-import apiService from "../services/apiService";
+// import apiService from "../services/apiService";
 import axios from "axios";
 
 const SignupPage = () => {
