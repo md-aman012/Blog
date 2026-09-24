@@ -5,6 +5,7 @@ import { useState } from 'react';
 import './LoginPage.css'
 import apiService from "../services/apiService";
 import {useNavigate} from 'react-router-dom' 
+import axios from 'axios';
 
 const LoginPage = () => {
   const [username,setUsername] = useState('');
@@ -18,7 +19,7 @@ const LoginPage = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await apiService.post('/api/login',{
+      const response = await axios.post('process.env.REACT_APP_API_URL/api/login',{
         username,
         password
       })

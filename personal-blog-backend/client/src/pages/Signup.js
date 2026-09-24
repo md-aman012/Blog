@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
 import apiService from "../services/apiService";
+import axios from "axios";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await apiService.post('/api/signup',{
+      const response = await axios.post('process.env.REACT_APP_API_URL/api/signup',{
         username,
         password,
         email,
