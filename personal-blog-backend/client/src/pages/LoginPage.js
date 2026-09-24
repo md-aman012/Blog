@@ -44,7 +44,7 @@ const LoginPage = () => {
   }
   return (
     <div>
-      <h1>Admin Login</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <div classname="form-group">
           <label htmlFor='username'>Username</label>
