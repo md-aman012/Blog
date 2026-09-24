@@ -3,8 +3,8 @@
 import React from 'react';
 import { useState } from 'react';
 import './LoginPage.css'
-import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import apiService from "../services/apiService";
+import {useNavigate} from 'react-router-dom' 
 
 const LoginPage = () => {
   const [username,setUsername] = useState('');
@@ -18,7 +18,7 @@ const LoginPage = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login',{
+      const response = await apiService.post('/api/login',{
         username,
         password
       })
