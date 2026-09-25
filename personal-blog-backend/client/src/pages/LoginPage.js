@@ -44,39 +44,37 @@ const LoginPage = () => {
 
   }
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit} className='login-form'>
-        <div classname="form-group">
-          <label htmlFor='username'>Username</label>
+    <div className="login-page">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
           <input
-            type='text'
-            id = 'username'
-            name='username'
-            placeholder='Enter username'
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
             disabled={loading}
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
            <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
             placeholder="Enter your password"
-            // The input's value is controlled by the 'password' state variable.
             value={password}
-            // The 'onChange' handler updates the state.
             onChange={(e) => setPassword(e.target.value)}
             required
             disabled={loading}
           />
         </div>
-        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-        <button type='submit' className='login-button' disabled={loading}>
+        {error && <div className="error-message">{error}</div>}
+        <button type="submit" className="login-button" disabled={loading}>
           {loading ? 'Logging In...' : 'Log In'}
         </button>
       </form>

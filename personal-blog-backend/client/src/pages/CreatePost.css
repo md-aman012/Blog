@@ -2,77 +2,95 @@
 
 .create-post-page {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 3rem auto;
+  padding: 3rem;
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
 }
 
 .create-post-page h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+  font-size: 2.5rem;
 }
 
 .create-post-form .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .create-post-form label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   font-weight: 600;
-  color: #555;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
 .create-post-form .form-control {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
   font-size: 1rem;
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
-  font-family: inherit; /* Inherit font from parent */
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  transition: var(--transition);
+  color: var(--text-primary);
 }
 
 .create-post-form .form-control:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  border-color: var(--accent-color);
+  background-color: var(--surface-color);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
 
 /* Specific styling for the markdown textarea */
 .create-post-form .markdown-input {
-  min-height: 400px; /* Give plenty of space for writing */
-  resize: vertical; /* Allow user to resize the textarea vertically */
+  min-height: 450px;
+  resize: vertical;
   font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  line-height: 1.6;
 }
 
 .create-post-form .submit-btn {
   width: 100%;
-  padding: 0.8rem;
+  padding: 1rem;
   border: none;
-  border-radius: 4px;
-  background-color: #28a745; /* Green for success/create */
+  border-radius: var(--radius-full);
+  background-color: var(--accent-color);
   color: white;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: var(--transition);
+  margin-top: 1rem;
 }
 
 .create-post-form .submit-btn:hover {
-  background-color: #218838;
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
 }
 
 .create-post-form .submit-btn:disabled {
-  background-color: #a5d6a7;
+  background-color: #94a3b8;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .create-post-page .error-message {
-  color: #dc3545;
+  color: var(--danger-color);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #fef2f2;
+  border-radius: var(--radius-md);
+  border: 1px solid #fecaca;
+  font-weight: 500;
 }
